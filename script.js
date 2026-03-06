@@ -2,18 +2,50 @@
    BRITOL GROUP — Website Interactivity
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+// ── Preloader Control ───────────────────
+let preloaderShown = false;
+let pageReady = false;
+const MIN_PRELOADER_TIME = 3000; // 3 seconds minimum
+const preloaderStartTime = Date.now();
 
-  // ── Preloader Dismiss ───────────────────
+function hidePreloader() {
   const preloader = document.getElementById('preloader');
   if (preloader) {
-    // Wait for the bar-fill animation to complete (~2.4s total: 0.9s delay + 1.5s fill)
+    preloader.classList.add('fade-out');
     setTimeout(() => {
-      preloader.classList.add('fade-out');
-      // Remove from DOM after fade transition
-      setTimeout(() => preloader.remove(), 600);
-    }, 2600);
+      if (preloader.parentElement) {
+        preloader.remove();
+      }
+    }, 600);
+    preloaderShown = true;
   }
+}
+
+function checkPreloaderExit() {
+  if (!pageReady) return;
+  
+  const elapsedTime = Date.now() - preloaderStartTime;
+  const remainingTime = Math.max(0, MIN_PRELOADER_TIME - elapsedTime);
+  
+  if (remainingTime > 0) {
+    // Wait for minimum time to pass
+    setTimeout(hidePreloader, remainingTime);
+  } else {
+    // Minimum time already passed
+    hidePreloader();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  pageReady = true;
+  checkPreloaderExit();
+  
+  // Ensure preloader is hidden after absolute max time (5s) even if something goes wrong
+  setTimeout(() => {
+    if (!preloaderShown) {
+      hidePreloader();
+    }
+  }, 5000);
 
   // ── Navbar Scroll Effect ────────────────
   const navbar = document.querySelector('.navbar');
@@ -43,18 +75,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
   const navAnchors = document.querySelectorAll('.nav-links a');
 
+  // Create overlay for mobile nav
+  const navOverlay = document.createElement('div');
+  navOverlay.className = 'nav-overlay';
+  document.body.appendChild(navOverlay);
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    navLinks.classList.add('open');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    if (navLinks.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
+  navOverlay.addEventListener('click', closeMenu);
+
   navAnchors.forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', closeMenu);
   });
 
   // ── Active Nav Link on Scroll ───────────
@@ -90,13 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Stagger the animation
         const el = entry.target;
         const siblings = el.parentElement ? Array.from(el.parentElement.children) : [];
         const siblingIndex = siblings.indexOf(el);
-        const delay = siblingIndex * 100;
+        // Reduce stagger delay on mobile for faster animations
+        const delay = window.innerWidth < 768 ? siblingIndex * 30 : siblingIndex * 100;
 
         setTimeout(() => {
           el.classList.add('animate-in');
@@ -114,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dots = document.querySelectorAll('.testimonials-dots .dot');
   let currentSlide = 0;
   const totalSlides = dots.length;
+  let autoRotateInterval;
 
   function goToSlide(index) {
     currentSlide = index;
@@ -127,15 +179,27 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', () => goToSlide(i));
   });
 
-  // Auto-rotate every 5 seconds
-  setInterval(() => {
-    goToSlide((currentSlide + 1) % totalSlides);
-  }, 5000);
+  // Auto-rotate every 5 seconds (skip on mobile for performance)
+  function startAutoRotate() {
+    if (window.innerWidth > 768) {
+      autoRotateInterval = setInterval(() => {
+        goToSlide((currentSlide + 1) % totalSlides);
+      }, 5000);
+    }
+  }
+  
+  startAutoRotate();
+  
+  // Adjust on resize
+  window.addEventListener('resize', () => {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  });
 
   // ── Hero Particles ─────────────────────
   const particlesContainer = document.querySelector('.hero-particles');
   if (particlesContainer) {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 10; i++) {
       const p = document.createElement('div');
       p.classList.add('particle');
       p.style.left = Math.random() * 100 + '%';
