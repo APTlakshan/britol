@@ -1,0 +1,84 @@
+/* ════════════════════════════════════════════════════════
+   BRITOL GROUP — Gallery Section
+   ════════════════════════════════════════════════════════ */
+
+.gallery {
+  padding: var(--section-padding);
+  background: var(--white);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(.9);
+}
+
+.gallery-item.animate-in {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item .gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(13, 63, 86, .8) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay span {
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.gallery-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+  height: 400px;
+}
+
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(3) {
+  height: 190px;
+}
+
+.gallery-item:nth-child(4) {
+  grid-row: span 2;
+  height: 400px;
+}
+
+.gallery-item:nth-child(5),
+.gallery-item:nth-child(6) {
+  height: 190px;
+}

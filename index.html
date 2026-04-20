@@ -9,7 +9,29 @@
         content="Britol Group provides exceptional cleaning services across Melbourne — office, medical, carpet, childcare, retail and more. 12+ years of trusted experience." />
     <meta name="keywords"
         content="cleaning services Melbourne, office cleaning, medical cleaning, carpet cleaning, commercial cleaning, Britol Group" />
-    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- ═══ Font Awesome Icons ═══ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- ═══ CSS Modules ═══ -->
+    <link rel="stylesheet" href="src/css/variables.css" />
+    <link rel="stylesheet" href="src/css/main.css" />
+    <link rel="stylesheet" href="src/css/preloader.css" />
+    <link rel="stylesheet" href="src/css/navbar.css" />
+    <link rel="stylesheet" href="src/css/buttons.css" />
+    <link rel="stylesheet" href="src/css/hero.css" />
+    <link rel="stylesheet" href="src/css/sections.css" />
+    <link rel="stylesheet" href="src/css/services.css" />
+    <link rel="stylesheet" href="src/css/why-choose-us.css" />
+    <link rel="stylesheet" href="src/css/gallery.css" />
+    <link rel="stylesheet" href="src/css/testimonials.css" />
+    <link rel="stylesheet" href="src/css/about.css" />
+    <link rel="stylesheet" href="src/css/contact.css" />
+    <link rel="stylesheet" href="src/css/footer.css" />
+    <link rel="stylesheet" href="src/css/modal.css" />
+    <link rel="stylesheet" href="src/css/animations.css" />
+    <link rel="stylesheet" href="src/css/responsive.css" />
+    
     <link rel="icon" type="image/png" href="images/logo.png" />
 </head>
 
@@ -62,7 +84,7 @@
     <!-- ═══ Hero Section ═══ -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="images/hero-banner.png" alt="Sparkling clean space" loading="eager" />
+            <img src="images/service vehicle  with logo.png" alt="Sparkling clean space" loading="eager" />
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-particles"></div>
@@ -75,9 +97,10 @@
             <p>We deliver exceptional cleaning solutions for offices, medical centres, childcare facilities and more —
                 with 12+ years of trusted experience across Melbourne.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary" id="scheduleBtn">
+                <!-- Updated: now opens the scheduling modal instead of scrolling to contact -->
+                <button class="btn btn-primary" id="scheduleBtn" onclick="openSchedulingModal()">
                     🗓️ Schedule a Cleaning
-                </a>
+                </button>
                 <a href="#services" class="btn btn-outline">
                     Explore Services →
                 </a>
@@ -98,8 +121,8 @@
                 <!-- Card 1 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/office-cleaning.png" alt="Office Cleaning" loading="lazy" />
-                        <div class="service-icon">🏢</div>
+                        <img src="images/office clenaing 6.jpeg" alt="Office Cleaning" loading="lazy" />
+                        
                     </div>
                     <div class="service-card-body">
                         <h3>Office Cleaning</h3>
@@ -110,8 +133,8 @@
                 <!-- Card 2 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/medical-cleaning.png" alt="Medical Centre Cleaning" loading="lazy" />
-                        <div class="service-icon">🏥</div>
+                        <img src="images/medical center  cleaning.avif" alt="Medical Centre Cleaning" loading="lazy" />
+                        
                     </div>
                     <div class="service-card-body">
                         <h3>Medical Centre Cleaning</h3>
@@ -122,8 +145,8 @@
                 <!-- Card 3 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/carpet-cleaning.png" alt="Carpet Cleaning" loading="lazy" />
-                        <div class="service-icon">🧹</div>
+                        <img src="images/office cleaning 5.jpeg" alt="Carpet Cleaning" loading="lazy" />
+                       
                     </div>
                     <div class="service-card-body">
                         <h3>Carpet Cleaning</h3>
@@ -134,8 +157,8 @@
                 <!-- Card 4 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/retail-cleaning.png" alt="Body Corporate Cleaning" loading="lazy" />
-                        <div class="service-icon">🏘️</div>
+                        <img src="images/office clenaing 6.jpeg" alt="Body Corporate Cleaning" loading="lazy" />
+                       
                     </div>
                     <div class="service-card-body">
                         <h3>Body Corporate &amp; Strata Cleaning</h3>
@@ -146,8 +169,8 @@
                 <!-- Card 5 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/childcare-cleaning.png" alt="Childcare Centre Cleaning" loading="lazy" />
-                        <div class="service-icon">🧒</div>
+                        <img src="images\child center cleaning.jpg" alt="Childcare Centre Cleaning" loading="lazy" />
+                        
                     </div>
                     <div class="service-card-body">
                         <h3>Childcare Centre Cleaning</h3>
@@ -158,14 +181,57 @@
                 <!-- Card 6 -->
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="images/retail-cleaning.png" alt="Retail & Common Area Cleaning" loading="lazy" />
-                        <div class="service-icon">🛍️</div>
+                        <img src="images/office-cleaning2.png.jpeg" alt="Retail & Common Area Cleaning" loading="lazy" />
+                        
                     </div>
                     <div class="service-card-body">
                         <h3>Retail &amp; Common Area Cleaning</h3>
                         <p>Inviting, spotless retail spaces that make a great impression on every customer who walks
                             through the door.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Why Choose Us Section ═══ -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-heading">
+                <div class="section-tag"><i class="fas fa-star"></i> Why Choose Us</div>
+                <h2>Why <span class="accent">Britol Group?</span></h2>
+                <p>We're not just a cleaning service — we're your trusted partner in maintaining pristine spaces.</p>
+            </div>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Fully Insured & Professional Team</h3>
+                    <p>Complete peace of mind with our fully insured and highly trained professional cleaners.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>100% Bond Back Guarantee</h3>
+                    <p>End of lease cleaning with our 100% bond back guarantee — your deposit is safe with us.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Eco-Friendly Cleaning Products</h3>
+                    <p>We care for your health and the environment using sustainable, non-toxic cleaning solutions.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Flexible Booking</h3>
+                    <p>Schedule cleanings that fit your lifestyle — weekdays, weekends, or after-hours available.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Competitive Pricing</h3>
+                    <p>Premium quality service at competitive rates — exceptional value for your investment.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon"><i class="fas fa-hotel"></i></div>
+                    <h3>Trusted by Hotels & Businesses</h3>
+                    <p>Thousands of satisfied hotels and businesses across Melbourne rely on Britol Group.</p>
                 </div>
             </div>
         </div>
@@ -181,28 +247,40 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="images/hero-banner.png" alt="Sparkling clean office" loading="lazy" />
-                    <div class="gallery-overlay"><span>Clean Office Space</span></div>
+                    <img src="images/office cleaning 3.jpeg" alt="Sparkling clean office" loading="lazy" />
                 </div>
                 <div class="gallery-item">
-                    <img src="images/office-cleaning.png" alt="Office deep clean" loading="lazy" />
-                    <div class="gallery-overlay"><span>Deep Office Clean</span></div>
+                    <img src="images/office cleaning 5.jpeg" alt="Office deep clean" loading="lazy" />
                 </div>
                 <div class="gallery-item">
-                    <img src="images/medical-cleaning.png" alt="Medical centre sanitized" loading="lazy" />
-                    <div class="gallery-overlay"><span>Medical Sanitation</span></div>
+                    <img src="images/wash room cleaning 4.jpeg" alt="Medical centre sanitized" loading="lazy" />
                 </div>
                 <div class="gallery-item">
-                    <img src="images/carpet-cleaning.png" alt="Carpet restored" loading="lazy" />
-                    <div class="gallery-overlay"><span>Carpet Restoration</span></div>
+                    <img src="images/floor cleaning.jpeg" alt="Carpet restored" loading="lazy" />
                 </div>
                 <div class="gallery-item">
-                    <img src="images/childcare-cleaning.png" alt="Childcare centre cleaned" loading="lazy" />
-                    <div class="gallery-overlay"><span>Childcare Centre</span></div>
+                    <img src="images/floor cleaning3.jpeg" alt="Childcare centre cleaned" loading="lazy" />
                 </div>
                 <div class="gallery-item">
-                    <img src="images/retail-cleaning.png" alt="Retail space polished" loading="lazy" />
-                    <div class="gallery-overlay"><span>Retail Space</span></div>
+                    <img src="images/kitchen cleaning 2.jpeg" alt="Retail space polished" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/office clenaing 4.jpeg" alt="Modern office clean" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/office clenaing 6.jpeg" alt="Corporate workspace" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/floor cleaning2.jpeg" alt="Floor polishing service" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/floor cleaning4.jpeg" alt="Sparkling floors" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/wash room cleaning 6.jpeg" alt="Washroom sanitization" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kitchen cleaning.jpeg" alt="Kitchen deep clean" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -286,7 +364,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="images/team-photo.png" alt="Britol Group Team" loading="lazy" />
+                    <img src="images/service vehicle  with logo.png" alt="Britol Group Team" loading="lazy" />
                     <div class="experience-badge">
                         <span class="number" data-count="12">0+</span>
                         <span class="label">Years Experience</span>
@@ -501,7 +579,229 @@
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
-    <script src="script.js"></script>
+
+    <!-- ═══════════════════════════════════════════════
+         SCHEDULING MODAL
+         Data sourced from Britol Group PDF quote sheets
+    ════════════════════════════════════════════════ -->
+    <div id="schedulingModalOverlay" role="dialog" aria-modal="true" aria-labelledby="smTitle">
+
+        <div id="schedulingModal">
+
+            <!-- Header -->
+            <div class="sm-header">
+                <div class="sm-header-left">
+                    <div class="sm-header-icon">🗓️</div>
+                    <div>
+                        <h2 id="smTitle">Schedule a Cleaning</h2>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <span class="sm-subtitle">Britol Group Pty Ltd</span>
+                    <button class="sm-close" onclick="closeSchedulingModal()" aria-label="Close modal">✕</button>
+                </div>
+            </div>
+
+            <!-- Step Tabs -->
+            <div class="sm-tabs">
+                <div class="sm-tab active" id="smTab1">1 — Service type</div>
+                <div class="sm-tab" id="smTab2">2 — Schedule</div>
+                <div class="sm-tab" id="smTab3">3 — Your details</div>
+                <div class="sm-tab" id="smTab4">4 — Confirm</div>
+            </div>
+
+            <!-- ── Step 1: Service Type ── -->
+            <div class="sm-panel active" id="smStep1">
+                <p style="font-size:13px;color:#666;margin:0 0 14px;">Select the type of service you need:</p>
+
+                <div class="sm-svc-grid">
+                    <div class="sm-svc-card selected" data-svc="office">
+                        <div class="svc-emoji">🏢</div>
+                        <div class="svc-name">Office Cleaning</div>
+                        <div class="svc-price">2× weekly · $200/wk excl. GST</div>
+                    </div>
+                    <div class="sm-svc-card" data-svc="bodycorp">
+                        <div class="svc-emoji">🏘️</div>
+                        <div class="svc-name">Body Corporate &amp; Strata</div>
+                        <div class="svc-price">2× weekly · $200/wk excl. GST</div>
+                    </div>
+                    <div class="sm-svc-card" data-svc="medical">
+                        <div class="svc-emoji">🏥</div>
+                        <div class="svc-name">Medical Centre</div>
+                        <div class="svc-price">Custom schedule · quote on request</div>
+                    </div>
+                    <div class="sm-svc-card" data-svc="restaurant">
+                        <div class="svc-emoji">🍽️</div>
+                        <div class="svc-name">Restaurant / Café</div>
+                        <div class="svc-price">Custom schedule · quote on request</div>
+                    </div>
+                    <div class="sm-svc-card" data-svc="carpet">
+                        <div class="svc-emoji">🧹</div>
+                        <div class="svc-name">Carpet Cleaning</div>
+                        <div class="svc-price">One-off or regular · quote on request</div>
+                    </div>
+                    <div class="sm-svc-card" data-svc="childcare">
+                        <div class="svc-emoji">🧒</div>
+                        <div class="svc-name">Childcare Centre</div>
+                        <div class="svc-price">Daily or weekly · quote on request</div>
+                    </div>
+                </div>
+
+                <!-- Scope of works preview (updates on selection) -->
+                <div class="sm-scope">
+                    <div class="sm-scope-title">Scope of works included:</div>
+                    <div class="sm-scope-list" id="smScopeList"></div>
+                </div>
+
+                <div class="sm-footer" style="padding-top:18px;">
+                    <span></span>
+                    <button class="sm-btn-next" onclick="smGoStep(2)">Next →</button>
+                </div>
+            </div>
+
+            <!-- ── Step 2: Schedule ── -->
+            <div class="sm-panel" id="smStep2">
+                <p style="font-size:13px;color:#666;margin:0 0 14px;">Choose your preferred cleaning schedule:</p>
+
+                <div class="sm-form-row">
+                    <div class="sm-form-group">
+                        <label for="smFreq">Frequency</label>
+                        <select id="smFreq">
+                            <option value="2x">2 times per week (recommended)</option>
+                            <option value="3x">3 times per week</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Once per week</option>
+                            <option value="fortnightly">Fortnightly</option>
+                            <option value="oneoff">One-off clean</option>
+                        </select>
+                    </div>
+                    <div class="sm-form-group">
+                        <label for="smDays">Preferred days</label>
+                        <select id="smDays">
+                            <option value="tue-weekend">Tuesday PM &amp; Weekend (default)</option>
+                            <option value="mon-thu">Monday &amp; Thursday</option>
+                            <option value="wed-fri">Wednesday &amp; Friday</option>
+                            <option value="custom">Custom — advise in notes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm-form-row">
+                    <div class="sm-form-group">
+                        <label for="smStartDate">Start date</label>
+                        <input type="date" id="smStartDate" />
+                    </div>
+                    <div class="sm-form-group">
+                        <label for="smTime">Preferred time</label>
+                        <select id="smTime">
+                            <option value="tbc">To be confirmed</option>
+                            <option value="morning">Morning (6am – 9am)</option>
+                            <option value="business">Business hours (9am – 5pm)</option>
+                            <option value="evening">Evening (5pm – 8pm)</option>
+                            <option value="weekend">Weekend (flexible)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm-info-bar">
+                    Coverage: <strong>All common / listed areas</strong> &nbsp;·&nbsp;
+                    Pricing excludes GST &nbsp;·&nbsp;
+                    <strong>$100 per clean</strong>
+                </div>
+
+                <div class="sm-footer">
+                    <button class="sm-btn-back" onclick="smGoStep(1)">← Back</button>
+                    <button class="sm-btn-next" onclick="smGoStep(3)">Next →</button>
+                </div>
+            </div>
+
+            <!-- ── Step 3: Client Details ── -->
+            <div class="sm-panel" id="smStep3">
+                <p style="font-size:13px;color:#666;margin:0 0 14px;">Tell us about yourself and your site:</p>
+
+                <div class="sm-form-row">
+                    <div class="sm-form-group">
+                        <label for="smName">Full name *</label>
+                        <input type="text" id="smName" placeholder="John Smith" />
+                    </div>
+                    <div class="sm-form-group">
+                        <label for="smPhone">Phone *</label>
+                        <input type="tel" id="smPhone" placeholder="0400 000 000" />
+                    </div>
+                </div>
+
+                <div class="sm-form-row">
+                    <div class="sm-form-group">
+                        <label for="smEmail">Email *</label>
+                        <input type="email" id="smEmail" placeholder="john@example.com" />
+                    </div>
+                    <div class="sm-form-group">
+                        <label for="smAddress">Site address</label>
+                        <input type="text" id="smAddress" placeholder="Melbourne, VIC" />
+                    </div>
+                </div>
+
+                <div class="sm-form-group" style="margin-bottom:16px;">
+                    <label for="smNotes">Additional notes</label>
+                    <textarea id="smNotes" placeholder="Access instructions, special requirements, areas of concern..."></textarea>
+                </div>
+
+                <div class="sm-footer">
+                    <button class="sm-btn-back" onclick="smGoStep(2)">← Back</button>
+                    <button class="sm-btn-next" onclick="smGoStep(4)">Review →</button>
+                </div>
+            </div>
+
+            <!-- ── Step 4: Confirm ── -->
+            <div class="sm-panel" id="smStep4">
+                <p style="font-size:13px;color:#666;margin:0 0 14px;">Review your booking summary before submitting:</p>
+
+                <div class="sm-summary" id="smSummary"></div>
+
+                <div class="sm-disclaimer">
+                    By submitting, you agree to be contacted by Britol Group Pty Ltd to confirm your booking.
+                    All prices exclude GST. Private apartments and restricted areas are not included in scope.
+                </div>
+
+                <div class="sm-footer">
+                    <button class="sm-btn-back" onclick="smGoStep(3)">← Back</button>
+                    <button class="sm-btn-submit" id="smSubmitBtn" onclick="smSubmit()">✔ Confirm Booking</button>
+                </div>
+            </div>
+
+            <!-- ── Step 5: Success ── -->
+            <div class="sm-panel" id="smStep5">
+                <div class="sm-success">
+                    <div class="sm-success-icon">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <path d="M5 13.5l5.5 5.5L21 8" stroke="#1a3a5c" stroke-width="2.2"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Booking request sent!</h3>
+                    <p>The Britol Group team will contact you within 24 hours to confirm your cleaning schedule.</p>
+                    <div class="sm-success-contact">
+                        📞 <a href="tel:0405585505" style="color:#1a3a5c;">0405 585 505</a>
+                        &nbsp;&nbsp;·&nbsp;&nbsp;
+                        ✉️ <a href="mailto:info@britolgroup.com.au" style="color:#1a3a5c;">info@britolgroup.com.au</a>
+                    </div>
+                    <br><br>
+                    <button class="sm-btn-next" onclick="closeSchedulingModal()">Close</button>
+                </div>
+            </div>
+
+        </div><!-- /#schedulingModal -->
+    </div><!-- /#schedulingModalOverlay -->
+
+
+    <script src="src/js/preloader.js"></script>
+    <script src="src/js/navbar.js"></script>
+    <script src="src/js/back-to-top.js"></script>
+    <script src="src/js/testimonials.js"></script>
+    <script src="src/js/animations.js"></script>
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/forms.js"></script>
+    <script src="src/js/modal.js"></script>
 
     <!-- Firebase SDK (CDN) -->
     <script type="module">

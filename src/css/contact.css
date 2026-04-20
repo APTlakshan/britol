@@ -1,0 +1,168 @@
+/* ════════════════════════════════════════════════════════
+   BRITOL GROUP — Contact Section & Forms
+   ════════════════════════════════════════════════════════ */
+
+.contact {
+  padding: var(--section-padding);
+  background: var(--gray-50);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.contact-info {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.contact-info.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.contact-info h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.contact-info > p {
+  color: var(--gray-400);
+  margin-bottom: 32px;
+  font-size: .95rem;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.contact-detail .icon {
+  width: 48px;
+  height: 48px;
+  background: var(--blue-50);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-detail h4 {
+  font-size: .95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--gray-700);
+}
+
+.contact-detail p,
+.contact-detail a {
+  font-size: .9rem;
+  color: var(--gray-400);
+}
+
+.contact-detail a:hover {
+  color: var(--blue-600);
+}
+
+.contact-map {
+  margin-top: 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+}
+
+.contact-form-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.contact-form-wrapper.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.contact-form {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 42px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+.contact-form h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.contact-form > p {
+  color: var(--gray-400);
+  font-size: .9rem;
+  margin-bottom: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--gray-200);
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  color: var(--gray-700);
+  background: var(--gray-50);
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue-400);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(51, 172, 220, .1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-form .btn {
+  width: 100%;
+  justify-content: center;
+}

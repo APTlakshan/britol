@@ -584,11 +584,11 @@ h5 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 36px;
+  padding: 18px 42px;
   border-radius: 50px;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.05rem;
   cursor: pointer;
   border: none;
   transition: var(--transition);

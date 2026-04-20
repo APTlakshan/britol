@@ -1,0 +1,133 @@
+/*
+   BRITOL GROUP — Why Choose Us Section
+   Purpose: Styling for the "Why Choose Us" section with reason cards
+*/
+
+.why-choose-us {
+    padding: var(--section-padding);
+    background: linear-gradient(135deg, var(--blue-50) 0%, rgba(233, 246, 252, 0.5) 100%);
+    border-top: 1px solid var(--blue-100);
+}
+
+.why-choose-us .section-heading {
+    margin-bottom: 60px;
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.reason-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.reason-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--blue-200);
+    transform: translateY(-5px);
+}
+
+.reason-card:hover .reason-icon i {
+    background: linear-gradient(135deg, var(--blue-200) 0%, var(--blue-300) 100%);
+    color: var(--blue-700);
+}
+
+.reason-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 20px;
+    color: var(--blue-600);
+}
+
+.reason-icon i {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+    border-radius: 50%;
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.reason-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-900);
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+
+.reason-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Animations */
+.reason-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.reason-card:nth-child(1) { animation-delay: 0.1s; }
+.reason-card:nth-child(2) { animation-delay: 0.2s; }
+.reason-card:nth-child(3) { animation-delay: 0.3s; }
+.reason-card:nth-child(4) { animation-delay: 0.4s; }
+.reason-card:nth-child(5) { animation-delay: 0.5s; }
+.reason-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .why-choose-us {
+        padding: 60px 0;
+    }
+
+    .reasons-grid {
+        gap: 20px;
+    }
+
+    .reason-card {
+        padding: 30px 20px;
+    }
+
+    .reason-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .reason-card h3 {
+        font-size: 16px;
+    }
+
+    .reason-card p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .reason-card {
+        padding: 25px 15px;
+    }
+
+    .reason-icon {
+        font-size: 36px;
+    }
+}

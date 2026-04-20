@@ -1,0 +1,66 @@
+/* ════════════════════════════════════════════════════════
+   BRITOL GROUP — Buttons & Call-to-Actions
+   ════════════════════════════════════════════════════════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 42px;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .2), transparent);
+  transform: translateX(-100%);
+  transition: var(--transition);
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+  color: var(--white);
+  box-shadow: var(--shadow-blue);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(51, 172, 220, .35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, .35);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, .1);
+  border-color: var(--white);
+  transform: translateY(-3px);
+}
+
+.btn-dark {
+  background: var(--blue-700);
+  color: var(--white);
+}
+
+.btn-dark:hover {
+  background: var(--blue-800);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-blue);
+}
