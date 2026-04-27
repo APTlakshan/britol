@@ -65,25 +65,25 @@ async function loadAndUpdatePricing() {
       const priceEl = card.querySelector('.svc-price');
       
       if (priceEl) {
-        // Build pricing display
         let priceText = '';
         
-        // Add frequency if present (for office and bodycorp)
-        if (pricing.frequency) {
-          priceText = pricing.frequency;
-        }
-        
-        // Add price
-        if (pricing.price) {
-          if (priceText) {
-            priceText += ' · ' + pricing.price;
+        // For services with frequency (office, bodycorp)
+        if (firebaseKey === 'office-cleaning' || firebaseKey === 'body-corporate') {
+          if (pricing.frequency && pricing.price) {
+            // Format: "2× weekly · $200/wk excl. GST"
+            priceText = `${pricing.frequency} · ${pricing.price}/wk excl. GST`;
+          } else if (pricing.frequency) {
+            priceText = `${pricing.frequency} · quote on request`;
+          } else if (pricing.price) {
+            priceText = `${pricing.price}/wk excl. GST`;
           } else {
-            priceText = pricing.price;
+            priceText = 'quote on request';
           }
-        } else {
-          // Empty price = "Quote on request"
-          if (priceText) {
-            priceText += ' · quote on request';
+        } 
+        // For services without frequency (medical, restaurant, carpet, childcare)
+        else {
+          if (pricing.price) {
+            priceText = pricing.price;
           } else {
             priceText = 'quote on request';
           }
