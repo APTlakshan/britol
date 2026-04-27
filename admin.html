@@ -4,9 +4,278 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Britol Group - Admin Panel</title>
-    <link rel="stylesheet" href="admin.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
+    <title>Britol Group - Pricing Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-box h1 {
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .auth-error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            width: 100%;
+            min-height: 100vh;
+            background: #f5f7fa;
+        }
+
+        .admin-navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .btn-logout {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: #c0392b;
+        }
+
+        .admin-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .content-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .pricing-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .pricing-card .form-group {
+            margin-bottom: 16px;
+        }
+
+        .pricing-card label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .pricing-card input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .pricing-card input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 12px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+
+        .save-btn:hover {
+            background: #229954;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .toast.success {
+            background: #27ae60;
+        }
+
+        .toast.error {
+            background: #e74c3c;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-content {
+                padding: 20px 15px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+
+            .admin-navbar {
+                padding: 15px 0;
+            }
+
+            .auth-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -18,7 +287,7 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="adminEmail">Email</label>
-                    <input type="email" id="adminEmail" placeholder="admin@example.com" required />
+                    <input type="email" id="adminEmail" placeholder="admin@britol.com" required />
                 </div>
                 <div class="form-group">
                     <label for="adminPassword">Password</label>
@@ -36,241 +305,118 @@
         <!-- Navbar -->
         <div class="admin-navbar">
             <div class="admin-container">
-                <div class="navbar-brand">
-                    <img src="images/logo.png" alt="Britol Group" class="navbar-logo" />
-                    <span>Britol Admin</span>
-                </div>
+                <div class="navbar-brand">💼 Britol Pricing Admin</div>
                 <button class="btn-logout" id="logoutBtn">Logout</button>
             </div>
         </div>
 
-        <!-- Sidebar -->
-        <div class="admin-layout">
-            <aside class="admin-sidebar">
-                <nav class="sidebar-nav">
-                    <button class="nav-item active" data-section="services">
-                        🏢 Services
-                    </button>
-                    <button class="nav-item" data-section="form-fields">
-                        📝 Form Fields
-                    </button>
-                    <button class="nav-item" data-section="property-types">
-                        🏠 Property Types
-                    </button>
-                    <button class="nav-item" data-section="booking-info">
-                        📅 Booking Info
-                    </button>
-                </nav>
-            </aside>
-
-            <!-- Main Content -->
-            <main class="admin-content">
-                
-                <!-- ═══ Services Section ═══ -->
-                <section class="content-section active" id="section-services">
-                    <div class="section-header">
-                        <h2>Manage Services</h2>
-                        <button class="btn-add" id="addServiceBtn">+ Add Service</button>
-                    </div>
-
-                    <div class="services-grid" id="servicesGrid">
-                        <!-- Services loaded here -->
-                    </div>
-
-                    <!-- Add/Edit Service Modal -->
-                    <div class="modal" id="serviceModal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 id="serviceModalTitle">Add Service</h3>
-                                <button class="modal-close">&times;</button>
-                            </div>
-                            <form id="serviceForm" class="admin-form">
-                                <input type="hidden" id="serviceId" />
-                                
-                                <div class="form-group">
-                                    <label for="serviceName">Service Name *</label>
-                                    <input type="text" id="serviceName" placeholder="e.g., Office Cleaning" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="serviceIcon">Icon/Emoji *</label>
-                                    <input type="text" id="serviceIcon" placeholder="e.g., 🏢" maxlength="5" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="serviceDescription">Description *</label>
-                                    <textarea id="serviceDescription" placeholder="Service description..." rows="4" required></textarea>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="serviceImage">Image URL</label>
-                                        <input type="text" id="serviceImage" placeholder="images/service.png" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="serviceCategory">Category</label>
-                                        <input type="text" id="serviceCategory" placeholder="e.g., Commercial" />
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="button" class="btn-cancel" data-modal="serviceModal">Cancel</button>
-                                    <button type="submit" class="btn-save">Save Service</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- ═══ Form Fields Section ═══ -->
-                <section class="content-section" id="section-form-fields">
-                    <div class="section-header">
-                        <h2>Form Field Labels & Options</h2>
-                    </div>
-
-                    <form id="formFieldsForm" class="admin-form">
+        <!-- Main Content -->
+        <div class="admin-content">
+            <h1 class="content-title">Service Pricing & Frequency</h1>
+            
+            <div class="pricing-grid">
+                <!-- Office Cleaning -->
+                <div class="pricing-card">
+                    <h3>🏢 Office Cleaning</h3>
+                    <form class="pricing-form" data-service="office-cleaning">
                         <div class="form-group">
-                            <label for="fullNameLabel">Full Name Label</label>
-                            <input type="text" id="fullNameLabel" placeholder="Full Name" />
+                            <label for="office-frequency">Frequency</label>
+                            <input type="text" id="office-frequency" placeholder="e.g., 2x weekly" />
+                            <div class="form-hint">e.g., 2x weekly, weekly, daily</div>
                         </div>
-
                         <div class="form-group">
-                            <label for="fullNamePlaceholder">Full Name Placeholder</label>
-                            <input type="text" id="fullNamePlaceholder" placeholder="John Smith" />
+                            <label for="office-price">Price</label>
+                            <input type="text" id="office-price" placeholder="e.g., $200/wk" />
+                            <div class="form-hint">e.g., $200/wk, $500/month</div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="emailLabel">Email Label</label>
-                            <input type="text" id="emailLabel" placeholder="Email Address" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="emailPlaceholder">Email Placeholder</label>
-                            <input type="text" id="emailPlaceholder" placeholder="john@example.com" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phoneLabel">Phone Label</label>
-                            <input type="text" id="phoneLabel" placeholder="Phone Number" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phonePlaceholder">Phone Placeholder</label>
-                            <input type="text" id="phonePlaceholder" placeholder="0405 585 505" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="serviceTypeLabel">Service Type Label</label>
-                            <input type="text" id="serviceTypeLabel" placeholder="Service Type" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="propertyTypeLabel">Property Type Label</label>
-                            <input type="text" id="propertyTypeLabel" placeholder="Property Type" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="detailsLabel">Additional Details Label</label>
-                            <input type="text" id="detailsLabel" placeholder="Additional Details" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="detailsPlaceholder">Additional Details Placeholder</label>
-                            <textarea id="detailsPlaceholder" placeholder="Tell us more about your needs..." rows="3"></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn-save">Save Form Fields</button>
-                        </div>
+                        <button type="submit" class="save-btn">Save</button>
                     </form>
-                </section>
+                </div>
 
-                <!-- ═══ Property Types Section ═══ -->
-                <section class="content-section" id="section-property-types">
-                    <div class="section-header">
-                        <h2>Property Types</h2>
-                        <button class="btn-add" id="addPropertyBtn">+ Add Property Type</button>
-                    </div>
-
-                    <div class="property-types-list" id="propertyTypesList">
-                        <!-- Property types loaded here -->
-                    </div>
-
-                    <!-- Add/Edit Property Type Modal -->
-                    <div class="modal" id="propertyModal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 id="propertyModalTitle">Add Property Type</h3>
-                                <button class="modal-close">&times;</button>
-                            </div>
-                            <form id="propertyForm" class="admin-form">
-                                <input type="hidden" id="propertyId" />
-                                
-                                <div class="form-group">
-                                    <label for="propertyName">Property Type Name *</label>
-                                    <input type="text" id="propertyName" placeholder="e.g., Office, Medical, Retail" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="propertyDescription">Description</label>
-                                    <textarea id="propertyDescription" placeholder="Description..." rows="3"></textarea>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="button" class="btn-cancel" data-modal="propertyModal">Cancel</button>
-                                    <button type="submit" class="btn-save">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- ═══ Booking Info Section ═══ -->
-                <section class="content-section" id="section-booking-info">
-                    <div class="section-header">
-                        <h2>Booking Information</h2>
-                    </div>
-
-                    <form id="bookingInfoForm" class="admin-form">
+                <!-- Body Corporate & Strata -->
+                <div class="pricing-card">
+                    <h3>🏗️ Body Corporate & Strata</h3>
+                    <form class="pricing-form" data-service="body-corporate">
                         <div class="form-group">
-                            <label for="turnaroundTime">Turnaround Time</label>
-                            <input type="text" id="turnaroundTime" placeholder="e.g., 24-48 hours" />
+                            <label for="corporate-frequency">Frequency</label>
+                            <input type="text" id="corporate-frequency" placeholder="e.g., 2x weekly" />
+                            <div class="form-hint">e.g., 2x weekly, weekly, daily</div>
                         </div>
-
                         <div class="form-group">
-                            <label for="minBookingTime">Minimum Booking Time (days)</label>
-                            <input type="number" id="minBookingTime" placeholder="1" min="1" />
+                            <label for="corporate-price">Price</label>
+                            <input type="text" id="corporate-price" placeholder="e.g., $200/wk" />
+                            <div class="form-hint">e.g., $200/wk, $500/month</div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="availabilityHours">Availability Hours</label>
-                            <input type="text" id="availabilityHours" placeholder="e.g., 08:00 AM - 05:00 PM" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="workingDays">Working Days (comma separated)</label>
-                            <input type="text" id="workingDays" placeholder="e.g., Monday, Tuesday, Wednesday, Thursday, Friday" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="quoteResponseTime">Quote Response Time</label>
-                            <input type="text" id="quoteResponseTime" placeholder="e.g., Within 24 hours" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="successMessage">Success Message (After Quote)</label>
-                            <textarea id="successMessage" placeholder="Thank you message..." rows="3"></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn-save">Save Booking Info</button>
-                        </div>
+                        <button type="submit" class="save-btn">Save</button>
                     </form>
-                </section>
+                </div>
 
-            </main>
+                <!-- Medical Center -->
+                <div class="pricing-card">
+                    <h3>🏥 Medical Center</h3>
+                    <form class="pricing-form" data-service="medical-center">
+                        <div class="form-group">
+                            <label for="medical-price">Price</label>
+                            <input type="text" id="medical-price" placeholder="Leave empty for 'Quote on Request'" />
+                            <div class="form-hint">Leave empty to show "Quote on Request"</div>
+                        </div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+
+                <!-- Restaurant -->
+                <div class="pricing-card">
+                    <h3>🍽️ Restaurant</h3>
+                    <form class="pricing-form" data-service="restaurant">
+                        <div class="form-group">
+                            <label for="restaurant-price">Price</label>
+                            <input type="text" id="restaurant-price" placeholder="Leave empty for 'Quote on Request'" />
+                            <div class="form-hint">Leave empty to show "Quote on Request"</div>
+                        </div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+
+                <!-- Carpet Cleaning -->
+                <div class="pricing-card">
+                    <h3>🧵 Carpet Cleaning</h3>
+                    <form class="pricing-form" data-service="carpet-cleaning">
+                        <div class="form-group">
+                            <label for="carpet-price">Price</label>
+                            <input type="text" id="carpet-price" placeholder="Leave empty for 'Quote on Request'" />
+                            <div class="form-hint">Leave empty to show "Quote on Request"</div>
+                        </div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+
+                <!-- Child Centre -->
+                <div class="pricing-card">
+                    <h3>👶 Child Centre</h3>
+                    <form class="pricing-form" data-service="child-centre">
+                        <div class="form-group">
+                            <label for="childcare-price">Price</label>
+                            <input type="text" id="childcare-price" placeholder="Leave empty for 'Quote on Request'" />
+                            <div class="form-hint">Leave empty to show "Quote on Request"</div>
+                        </div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+
+                <!-- Common/Listed Area -->
+                <div class="pricing-card">
+                    <h3>📍 Common/Listed Area Price</h3>
+                    <form class="pricing-form" data-service="common-area">
+                        <div class="form-group">
+                            <label for="common-price">Price</label>
+                            <input type="text" id="common-price" placeholder="e.g., $0.50/sqm" />
+                            <div class="form-hint">e.g., $0.50/sqm, $5/zone</div>
+                        </div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
     </div>
 
     <!-- ═══ Toast Notifications ═══ -->
@@ -280,7 +426,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBieVXcXbIk7t1t-otDBjOv7WWKSbGDD3s",
@@ -302,7 +448,7 @@
         window.firebaseApp = app;
     </script>
 
-    <script type="module" src="admin.js"></script>
+    <script type="module" src="admin-pricing.js"></script>
 
 </body>
 
