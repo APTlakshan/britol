@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Britol Group - Admin Panel</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
+</head>
+
+<body>
+
+    <!-- ═══ Auth Container ═══ -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <h1>Admin Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" placeholder="admin@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter password" required />
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+                <p id="authError" class="auth-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══ Admin Dashboard ═══ -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        
+        <!-- Navbar -->
+        <div class="admin-navbar">
+            <div class="admin-container">
+                <div class="navbar-brand">
+                    <img src="images/logo.png" alt="Britol Group" class="navbar-logo" />
+                    <span>Britol Admin</span>
+                </div>
+                <button class="btn-logout" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="admin-layout">
+            <aside class="admin-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" data-section="services">
+                        🏢 Services
+                    </button>
+                    <button class="nav-item" data-section="form-fields">
+                        📝 Form Fields
+                    </button>
+                    <button class="nav-item" data-section="property-types">
+                        🏠 Property Types
+                    </button>
+                    <button class="nav-item" data-section="booking-info">
+                        📅 Booking Info
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                
+                <!-- ═══ Services Section ═══ -->
+                <section class="content-section active" id="section-services">
+                    <div class="section-header">
+                        <h2>Manage Services</h2>
+                        <button class="btn-add" id="addServiceBtn">+ Add Service</button>
+                    </div>
+
+                    <div class="services-grid" id="servicesGrid">
+                        <!-- Services loaded here -->
+                    </div>
+
+                    <!-- Add/Edit Service Modal -->
+                    <div class="modal" id="serviceModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="serviceModalTitle">Add Service</h3>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                            <form id="serviceForm" class="admin-form">
+                                <input type="hidden" id="serviceId" />
+                                
+                                <div class="form-group">
+                                    <label for="serviceName">Service Name *</label>
+                                    <input type="text" id="serviceName" placeholder="e.g., Office Cleaning" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="serviceIcon">Icon/Emoji *</label>
+                                    <input type="text" id="serviceIcon" placeholder="e.g., 🏢" maxlength="5" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="serviceDescription">Description *</label>
+                                    <textarea id="serviceDescription" placeholder="Service description..." rows="4" required></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="serviceImage">Image URL</label>
+                                        <input type="text" id="serviceImage" placeholder="images/service.png" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="serviceCategory">Category</label>
+                                        <input type="text" id="serviceCategory" placeholder="e.g., Commercial" />
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn-cancel" data-modal="serviceModal">Cancel</button>
+                                    <button type="submit" class="btn-save">Save Service</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ═══ Form Fields Section ═══ -->
+                <section class="content-section" id="section-form-fields">
+                    <div class="section-header">
+                        <h2>Form Field Labels & Options</h2>
+                    </div>
+
+                    <form id="formFieldsForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="fullNameLabel">Full Name Label</label>
+                            <input type="text" id="fullNameLabel" placeholder="Full Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullNamePlaceholder">Full Name Placeholder</label>
+                            <input type="text" id="fullNamePlaceholder" placeholder="John Smith" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailLabel">Email Label</label>
+                            <input type="text" id="emailLabel" placeholder="Email Address" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailPlaceholder">Email Placeholder</label>
+                            <input type="text" id="emailPlaceholder" placeholder="john@example.com" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneLabel">Phone Label</label>
+                            <input type="text" id="phoneLabel" placeholder="Phone Number" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phonePlaceholder">Phone Placeholder</label>
+                            <input type="text" id="phonePlaceholder" placeholder="0405 585 505" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serviceTypeLabel">Service Type Label</label>
+                            <input type="text" id="serviceTypeLabel" placeholder="Service Type" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propertyTypeLabel">Property Type Label</label>
+                            <input type="text" id="propertyTypeLabel" placeholder="Property Type" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="detailsLabel">Additional Details Label</label>
+                            <input type="text" id="detailsLabel" placeholder="Additional Details" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="detailsPlaceholder">Additional Details Placeholder</label>
+                            <textarea id="detailsPlaceholder" placeholder="Tell us more about your needs..." rows="3"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Save Form Fields</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ═══ Property Types Section ═══ -->
+                <section class="content-section" id="section-property-types">
+                    <div class="section-header">
+                        <h2>Property Types</h2>
+                        <button class="btn-add" id="addPropertyBtn">+ Add Property Type</button>
+                    </div>
+
+                    <div class="property-types-list" id="propertyTypesList">
+                        <!-- Property types loaded here -->
+                    </div>
+
+                    <!-- Add/Edit Property Type Modal -->
+                    <div class="modal" id="propertyModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="propertyModalTitle">Add Property Type</h3>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                            <form id="propertyForm" class="admin-form">
+                                <input type="hidden" id="propertyId" />
+                                
+                                <div class="form-group">
+                                    <label for="propertyName">Property Type Name *</label>
+                                    <input type="text" id="propertyName" placeholder="e.g., Office, Medical, Retail" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="propertyDescription">Description</label>
+                                    <textarea id="propertyDescription" placeholder="Description..." rows="3"></textarea>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn-cancel" data-modal="propertyModal">Cancel</button>
+                                    <button type="submit" class="btn-save">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ═══ Booking Info Section ═══ -->
+                <section class="content-section" id="section-booking-info">
+                    <div class="section-header">
+                        <h2>Booking Information</h2>
+                    </div>
+
+                    <form id="bookingInfoForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="turnaroundTime">Turnaround Time</label>
+                            <input type="text" id="turnaroundTime" placeholder="e.g., 24-48 hours" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="minBookingTime">Minimum Booking Time (days)</label>
+                            <input type="number" id="minBookingTime" placeholder="1" min="1" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availabilityHours">Availability Hours</label>
+                            <input type="text" id="availabilityHours" placeholder="e.g., 08:00 AM - 05:00 PM" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="workingDays">Working Days (comma separated)</label>
+                            <input type="text" id="workingDays" placeholder="e.g., Monday, Tuesday, Wednesday, Thursday, Friday" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quoteResponseTime">Quote Response Time</label>
+                            <input type="text" id="quoteResponseTime" placeholder="e.g., Within 24 hours" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="successMessage">Success Message (After Quote)</label>
+                            <textarea id="successMessage" placeholder="Thank you message..." rows="3"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Save Booking Info</button>
+                        </div>
+                    </form>
+                </section>
+
+            </main>
+        </div>
+
+    </div>
+
+    <!-- ═══ Toast Notifications ═══ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBieVXcXbIk7t1t-otDBjOv7WWKSbGDD3s",
+            authDomain: "britoldata.firebaseapp.com",
+            projectId: "britoldata",
+            storageBucket: "britoldata.firebasestorage.app",
+            messagingSenderId: "513106279152",
+            appId: "1:513106279152:web:acfad41ac3be94a58ee035",
+            measurementId: "G-4CSDHVYKY8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Make globally available
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+        window.firebaseApp = app;
+    </script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

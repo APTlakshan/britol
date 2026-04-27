@@ -1,0 +1,236 @@
+/* ============================================
+   BRITOL GROUP - Initial Firestore Seed Data
+   Import this data into Firestore using Firebase console
+   ============================================ */
+
+/*
+INSTRUCTIONS:
+1. Go to Firebase Console → Firestore Database
+2. Manually create these documents OR
+3. Use Firebase CLI to import JSON
+
+MANUAL CREATION STEPS:
+1. Create collection: /config
+2. Create documents as shown below
+*/
+
+// ═══ DOCUMENT 1: Services ═══
+// Location: /config/services
+// Type: Document
+
+{
+  "items": [
+    {
+      "name": "Office Cleaning",
+      "icon": "🏢",
+      "description": "Keep your workspace immaculate with our comprehensive office cleaning services. We handle everything from desks to floors.",
+      "image": "images/office-cleaning.png",
+      "category": "Commercial"
+    },
+    {
+      "name": "Medical Centre Cleaning",
+      "icon": "🏥",
+      "description": "Stringent sanitation protocols for clinics and healthcare facilities, meeting the highest hygiene standards.",
+      "image": "images/medical-cleaning.png",
+      "category": "Healthcare"
+    },
+    {
+      "name": "Carpet Cleaning",
+      "icon": "🧹",
+      "description": "Deep steam cleaning and stain removal to restore your carpets to their original glory. Fresh and allergen-free.",
+      "image": "images/carpet-cleaning.png",
+      "category": "Specialized"
+    },
+    {
+      "name": "Body Corporate & Strata Cleaning",
+      "icon": "🏘️",
+      "description": "Professional common area maintenance for residential and commercial strata properties across Melbourne.",
+      "image": "images/retail-cleaning.png",
+      "category": "Commercial"
+    },
+    {
+      "name": "Childcare Centre Cleaning",
+      "icon": "🧒",
+      "description": "Safe, non-toxic cleaning for early learning centres. We use child-safe products to protect little ones.",
+      "image": "images/childcare-cleaning.png",
+      "category": "Specialized"
+    },
+    {
+      "name": "Retail & Common Area Cleaning",
+      "icon": "🛍️",
+      "description": "Inviting, spotless retail spaces that make a great impression on every customer who walks through the door.",
+      "image": "images/retail-cleaning.png",
+      "category": "Commercial"
+    }
+  ]
+}
+
+
+// ═══ DOCUMENT 2: Form Fields ═══
+// Location: /config/formFields
+// Type: Document
+
+{
+  "fullNameLabel": "Full Name",
+  "fullNamePlaceholder": "John Smith",
+  "emailLabel": "Email Address",
+  "emailPlaceholder": "john@example.com",
+  "phoneLabel": "Phone Number",
+  "phonePlaceholder": "0405 585 505",
+  "serviceTypeLabel": "Service Type",
+  "propertyTypeLabel": "Property Type",
+  "detailsLabel": "Additional Details",
+  "detailsPlaceholder": "Tell us more about your cleaning needs...",
+  "updatedAt": "2026-04-27T12:00:00Z"
+}
+
+
+// ═══ DOCUMENT 3: Property Types ═══
+// Location: /config/propertyTypes
+// Type: Document
+
+{
+  "items": [
+    {
+      "name": "Office",
+      "description": "Commercial office space"
+    },
+    {
+      "name": "Medical Centre",
+      "description": "Healthcare facility"
+    },
+    {
+      "name": "Retail Store",
+      "description": "Retail or commercial space"
+    },
+    {
+      "name": "Childcare Centre",
+      "description": "Childcare or educational facility"
+    },
+    {
+      "name": "Residential",
+      "description": "Residential property"
+    }
+  ]
+}
+
+
+// ═══ DOCUMENT 4: Booking Info ═══
+// Location: /config/bookingInfo
+// Type: Document
+
+{
+  "turnaroundTime": "24-48 hours",
+  "minBookingTime": 1,
+  "availabilityHours": "08:00 AM - 05:00 PM",
+  "workingDays": "Monday to Friday",
+  "quoteResponseTime": "Within 24 hours",
+  "successMessage": "Thank you for your quote request! We'll get back to you within 24 hours with a personalized quote.",
+  "updatedAt": "2026-04-27T12:00:00Z"
+}
+
+
+/*
+═══════════════════════════════════════════════════════════════
+   HOW TO IMPORT THIS DATA INTO FIRESTORE
+═══════════════════════════════════════════════════════════════
+
+METHOD 1: Manual Entry (via Firebase Console)
+───────────────────────────────────────────────
+1. Go to https://console.firebase.google.com
+2. Select "britoldata" project
+3. Click on "Firestore Database"
+4. Click "Start Collection"
+5. Collection ID: "config"
+6. Click "Auto ID" or leave blank for first doc
+7. Manually enter each field:
+   - Field name: "items"
+   - Type: "Array"
+   - Add array items manually
+
+Alternative - Use "Import Document":
+1. Click "Import Document" button
+2. Select JSON file
+3. Map fields appropriately
+
+METHOD 2: Firebase CLI (Command Line)
+──────────────────────────────────────
+# Install Firebase CLI
+npm install -g firebase-tools
+
+# Login to Firebase
+firebase login
+
+# Set project
+firebase use britoldata
+
+# Use firestore:import command
+firebase firestore:import --import-path=backup.json --project=britoldata
+
+METHOD 3: Via Admin SDK (Node.js)
+──────────────────────────────────
+const admin = require('firebase-admin');
+const serviceAccount = require('./serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  projectId: 'britoldata'
+});
+
+const db = admin.firestore();
+
+// Create or update config/services
+await db.collection('config').doc('services').set({
+  items: [...data...]
+});
+
+// Repeat for other documents
+
+
+═══════════════════════════════════════════════════════════════
+   FIRESTORE STRUCTURE VISUALIZATION
+═══════════════════════════════════════════════════════════════
+
+britoldata (Firestore Database)
+│
+└─ config (Collection)
+   ├─ services (Document)
+   │  └─ items: [
+   │     {name, icon, description, image, category},
+   │     {...},
+   │     {...}
+   │  ]
+   │
+   ├─ formFields (Document)
+   │  └─ {fullNameLabel, emailLabel, phoneLabel, ...}
+   │
+   ├─ propertyTypes (Document)
+   │  └─ items: [
+   │     {name, description},
+   │     {...}
+   │  ]
+   │
+   └─ bookingInfo (Document)
+      └─ {turnaroundTime, minBookingTime, availabilityHours, ...}
+
+
+═══════════════════════════════════════════════════════════════
+   AFTER IMPORTING - TEST CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+☐ Log into admin panel (/admin.html)
+☐ Navigate to Services section
+☐ Verify 6 services display
+☐ Go to Form Fields section
+☐ Check all labels are visible
+☐ Go to Property Types section
+☐ Verify 5 property types show
+☐ Go to Booking Info section
+☐ Confirm all booking info displays
+☐ Refresh public website
+☐ Check contact form has updated labels
+☐ Verify service dropdown is populated
+☐ Confirm form works and data saves
+
+═══════════════════════════════════════════════════════════════
+*/
