@@ -54,6 +54,13 @@ const SM_SCOPES = {
     'Kitchen / food prep area — appliances, benches, mop',
     'Entry & corridors — vacuum & mop',
     'Staff rooms & offices — dust, vacuum, empty bins'
+  ],
+  gardening: [
+    'Lawn Care — Lawn mowing (front/back), whippersnipping, edging, clippings removal/mulching',
+    'Lawn Health — Fertilising, weed control, aeration, top dressing & overseeding, turf/seed installation',
+    'Garden Maintenance — Weeding beds & pathways, pruning shrubs & small trees',
+    'Hedge Care — Hedge trimming, bush shaping, mulch application',
+    'Planting — Flowers, shrubs, vegetables & garden care'
   ]
 };
 
@@ -63,7 +70,8 @@ const SM_LABELS = {
   medical: 'Medical Centre',
   restaurant: 'Restaurant / Café',
   carpet: 'Carpet Cleaning',
-  childcare: 'Childcare Centre'
+  childcare: 'Childcare Centre',
+  gardening: 'Lawn Care & Garden Maintenance'
 };
 
 let smSelected = 'office';
@@ -135,12 +143,47 @@ function initModal() {
     /* ── Submit ── */
     window.smSubmit = function() {
       var btn = document.getElementById('smSubmitBtn');
-      btn.textContent = 'Submitting…';
+      btn.textContent = 'Opening WhatsApp…';
       btn.disabled = true;
-      /* TODO: wire up to your backend / Firebase / email service here */
+
+      var freq = document.getElementById('smFreq');
+      var days = document.getElementById('smDays');
+      var date = document.getElementById('smStartDate').value || 'TBC';
+      var time = document.getElementById('smTime');
+      var name = document.getElementById('smName').value || '—';
+      var phone = document.getElementById('smPhone').value || '—';
+      var email = document.getElementById('smEmail').value || '—';
+      var addr = document.getElementById('smAddress').value || '—';
+      var notes = document.getElementById('smNotes') ? document.getElementById('smNotes').value.trim() : '';
+
+      var svcLabel = SM_LABELS[smSelected] || 'Cleaning Service';
+      var freqLabel = freq ? freq.options[freq.selectedIndex].text : '—';
+      var daysLabel = days ? days.options[days.selectedIndex].text : '—';
+      var timeLabel = time ? time.options[time.selectedIndex].text : '—';
+
+      var waText = '*New Cleaning Schedule Request - South East Melbourne*\n\n' +
+        '🏢 *Service:* ' + svcLabel + '\n' +
+        '📅 *Frequency:* ' + freqLabel + '\n' +
+        '📆 *Preferred Days:* ' + daysLabel + '\n' +
+        '🗓️ *Start Date:* ' + date + '\n' +
+        '⏰ *Preferred Time:* ' + timeLabel + '\n\n' +
+        '👤 *Name:* ' + name + '\n' +
+        '📞 *Phone:* ' + phone + '\n' +
+        '📧 *Email:* ' + email + '\n' +
+        '📍 *Site Address:* ' + addr;
+
+      if (notes) {
+        waText += '\n📝 *Notes:* ' + notes;
+      }
+
+      var waUrl = 'https://wa.me/61405585405?text=' + encodeURIComponent(waText);
+      window.open(waUrl, '_blank');
+
       setTimeout(function() {
+        btn.textContent = '✔ Confirm Booking';
+        btn.disabled = false;
         window.smGoStep(5);
-      }, 900);
+      }, 500);
     };
 
     /* ── Open / Close modal ── */
