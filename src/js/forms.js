@@ -12,6 +12,12 @@ function initForms() {
         const name = quoteForm.querySelector('#quoteName').value.trim();
         const email = quoteForm.querySelector('#quoteEmail').value.trim();
         const phone = quoteForm.querySelector('#quotePhone').value.trim();
+        const messageEl = quoteForm.querySelector('#quoteMessage');
+        const messageText = messageEl ? messageEl.value.trim() : '';
+        const serviceEl = quoteForm.querySelector('#quoteService');
+        const serviceText = (serviceEl && serviceEl.value)
+          ? (serviceEl.options[serviceEl.selectedIndex] ? serviceEl.options[serviceEl.selectedIndex].text : serviceEl.value)
+          : 'Not specified';
 
         if (!name || !email || !phone) {
           showNotification('Please fill in all required fields.', 'error');
@@ -23,7 +29,19 @@ function initForms() {
           return;
         }
 
-        showNotification('Thank you! We\'ll get back to you within 24 hours. 🎉', 'success');
+        const whatsappMessage =
+          `*New Quote Request - South East Melbourne*\n\n` +
+          `👤 *Name:* ${name}\n` +
+          `📧 *Email:* ${email}\n` +
+          `📞 *Phone:* ${phone}\n` +
+          `🧹 *Service:* ${serviceText}\n` +
+          `💬 *Message:* ${messageText || 'N/A'}`;
+
+        const whatsappNumber = '61405585405';
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        window.open(whatsappUrl, '_blank');
+        showNotification('Opening WhatsApp with your quote details... 💬', 'success');
         quoteForm.reset();
       });
     }
